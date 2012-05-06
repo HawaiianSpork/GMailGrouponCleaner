@@ -42,7 +42,7 @@ public class GMailCleaner {
 			Folder inbox = store.getFolder("INBOX");
 			Folder trash = getTrashFolder(store);
 			if (trash == null) {
-				System.err.println("Cannot find GMail trash folder.");
+				logger.severe("Cannot find GMail trash folder.");
 				return;
 			}
 
