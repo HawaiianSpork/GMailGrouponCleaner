@@ -3,8 +3,11 @@ apply plugin: 'eclipse'
 
 repositories {
   mavenCentral()
+  mavenRepo url: 'https://repository.apache.org/service/local/repositories/releases/context'
 }
 
 dependencies {
   compile group: 'javax.mail', name: 'mail', version: '1.4.5'
+  compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.4'
+  compile group: 'commons-daemon', name: 'commons-daemon', version: '1.0.10'
 }
