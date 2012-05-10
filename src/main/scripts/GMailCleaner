@@ -1,15 +1,13 @@
 #!/bin/sh
 
-# Setup variables
-EXEC=./jsvc
 
 APP_HOME="."
+EXEC=$APP_HOME/bin/jsvc
 
 CLASS_PATH=$APP_HOME/lib/GMailGrouponCleaner.jar:$APP_HOME/lib/mail-1.4.5.jar:$APP_HOME/lib/slf4j-simple-1.6.4.jar:$APP_HOME/lib/commons-daemon-1.0.10.jar:$APP_HOME/lib/activation-1.1.jar:$APP_HOME/lib/slf4j-api-1.6.4.jar
 
 #CLASS_PATH="/usr/share/java/commons-daemon.jar":"/path/to/your.jar"
 CLASS=com.nihmarch.GMailCleaner
-#PID=/var/run/GMailCleaner.pid
 PID=/tmp/GMailCleaner.pid
 LOG_OUT=/tmp/GMailCleaner.out
 LOG_ERR=/tmp/GMailCleaner.err

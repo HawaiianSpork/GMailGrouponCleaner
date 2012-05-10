@@ -42,6 +42,7 @@ public class GMailCleaner implements Daemon {
 		logger.info("Starting");
 		GMailCleanerConfig config = GMailCleanerConfig.load();
 		GMailCleanTask cleanTask = new GMailCleanTask(config.getUsername(), config.getPassword());
+		cleanTask.run();
 		timer.schedule(cleanTask, twoHoursAnd17Minutes);
 	}
 
