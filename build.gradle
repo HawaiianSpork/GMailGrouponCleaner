@@ -1,5 +1,8 @@
+//import org.gradle.api.tasks.application.CreateStartScripts
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'application'
+
 
 repositories {
   mavenCentral()
@@ -10,4 +13,14 @@ dependencies {
   compile group: 'javax.mail', name: 'mail', version: '1.4.5'
   compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.4'
   compile group: 'commons-daemon', name: 'commons-daemon', version: '1.0.10'
+}
+
+startScripts {
+  applicationName = 'configGMailCleaner'
+  mainClassName = 'com.nihmarch.GMailSetup'
+}
+
+task runConfig(dependsOn: 'build', type: JavaExec) {
+  main = 'com.nihmarch.GMailSetup'
+  classpath = sourceSets.main.runtimeClasspath
 }

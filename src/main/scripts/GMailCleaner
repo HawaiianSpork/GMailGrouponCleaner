@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Setup variables
+EXEC=./jsvc
+
+APP_HOME="."
+
+CLASS_PATH=$APP_HOME/lib/GMailGrouponCleaner.jar:$APP_HOME/lib/mail-1.4.5.jar:$APP_HOME/lib/slf4j-simple-1.6.4.jar:$APP_HOME/lib/commons-daemon-1.0.10.jar:$APP_HOME/lib/activation-1.1.jar:$APP_HOME/lib/slf4j-api-1.6.4.jar
+
+#CLASS_PATH="/usr/share/java/commons-daemon.jar":"/path/to/your.jar"
+CLASS=com.nihmarch.GMailCleaner
+#PID=/var/run/GMailCleaner.pid
+PID=/tmp/GMailCleaner.pid
+LOG_OUT=/tmp/GMailCleaner.out
+LOG_ERR=/tmp/GMailCleaner.err
+
+do_exec()
+{
+    $EXEC -home "$JAVA_HOME" -cp $CLASS_PATH -outfile $LOG_OUT -errfile $LOG_ERR -pidfile $PID $1 $CLASS
+}
+
+case "$1" in
+    start)
+        do_exec
+            ;;
+    stop)
+        do_exec "-stop"
+            ;;
+    restart)
+        if [ -f "$PID" ]; then
+            do_exec "-stop"
+            do_exec
+        else
+            echo "service not running, will do nothing"
+            exit 1
+        fi
+            ;;
+    *)
+            echo "usage: daemon {start|stop|restart}" >&2
+            exit 3
+            ;;
+esac
