@@ -1,7 +1,25 @@
 #!/bin/sh
 
+APP_BASE_NAME=`basename $0`
 
-APP_HOME="."
+# Attempt to set APP_HOME
+# Resolve links: $0 may be a link
+PRG="$0"
+# Need this for relative symlinks.
+while [ -h "$PRG" ] ; do
+    ls=`ls -ld "$PRG"`
+    link=`expr "$ls" : '.*-> \(.*\)$'`
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=`dirname "$PRG"`"/$link"
+    fi
+done
+SAVED="`pwd`"
+cd "`dirname \"$PRG\"`/.."
+APP_HOME="`pwd -P`"
+cd "$SAVED"
+
 EXEC=$APP_HOME/bin/jsvc
 
 CLASS_PATH=$APP_HOME/lib/GMailGrouponCleaner.jar:$APP_HOME/lib/mail-1.4.5.jar:$APP_HOME/lib/slf4j-simple-1.6.4.jar:$APP_HOME/lib/commons-daemon-1.0.10.jar:$APP_HOME/lib/activation-1.1.jar:$APP_HOME/lib/slf4j-api-1.6.4.jar
