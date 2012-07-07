@@ -4,8 +4,9 @@ This is a simple daemon that runs from Unix like operating system that will clea
 
 ## Building/Installing
 
-Code is built with gradle and just depends on jsvc.
+To build and install the code on a Mac run:
 
+    brew install jsvc
     brew install gradle
     brew install maven
     gradle install
@@ -13,6 +14,7 @@ Code is built with gradle and just depends on jsvc.
 ## Running
 
 You need to first configure it with your username and password than start the deamon
-  
-    build/install/GMailGrouponCleaner/bin/configGMailCleaner  
+ 
+    export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/Current/     
+    buil/dinstall/GMailGrouponCleaner/bin/configGMailCleaner  
     build/install/GMailGrouponCleaner/bin/GMailCleaner start  
